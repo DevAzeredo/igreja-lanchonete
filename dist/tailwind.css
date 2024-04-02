@@ -556,16 +556,16 @@ video {
   margin-right: 1rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .flex {
   display: flex;
 }
 
 .h-1\/5 {
   height: 20%;
-}
-
-.h-20 {
-  height: 5rem;
 }
 
 .h-4\/5 {

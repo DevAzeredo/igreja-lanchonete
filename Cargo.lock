@@ -1247,6 +1247,7 @@ name = "igreja-lanchonete"
 version = "0.1.0"
 dependencies = [
  "dioxus",
+ "log",
  "manganis",
 ]
 
