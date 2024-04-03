@@ -9,13 +9,12 @@ fn main() {
 fn App() -> Element {
     const _TAILWIND_URL: &str = manganis::mg!(file(r"tailwind.css"));
     let mut items = Item {
-        name: use_signal(|| String::from("Item")),
-        price: 0.0,
-        quantity: use_signal(|| 9),
-        description: String::from(""),
+        name: use_signal(|| String::from("Hambúrguer")),
+        price: 17.99,
+        quantity: use_signal(|| 0),
+        description: String::from("Hambúrguer delicioso feito com muito amor --->"),
     };
     let mut count = use_signal(|| 0);
-    rsx! { Item {asd:items} }
+    rsx! { Item {item:items} }
 
-    //name:items.name,price:items.price, quantity:items.quantity,description: items.description
 }

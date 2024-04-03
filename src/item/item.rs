@@ -2,7 +2,7 @@ use dioxus::{core_macro::rsx, dioxus_core::Element};
 use dioxus::{prelude::*, web::launch};
 #[derive(PartialEq, Clone, Props)]
 pub struct Prop {
-    pub asd: Item,
+    pub item: Item,
 }
 
 #[derive(PartialEq, Clone, Props)]
@@ -15,52 +15,55 @@ pub struct Item {
 
 pub fn Item(mut props: Prop) -> Element {
     rsx!(
-        div { class : "flex mb-4 max-w-md max-h-md border p-4",
-            div { class : "mr-4 w-7/12",
-                img { src : "https://th.bing.com/th/id/OIP.tAWdQ-CvasZX5IXaADwI8wHaDc?rs=1&pid=ImgDetMain",
+        div { class : "flex mb-4 max-w max-h border p-4 mt-2 mr-2 ml-2",
+            div { class : "mr-4 w-5/12",
+                img { src : "https://www.estadao.com.br/resizer/dixyOItHmPSgiedCSBL1iIT5lGo=/arc-anglerfish-arc2-prod-estadao/public/GUOGMQ4FRJIUPAWMYLE4WNA3SY.jpg",
                     class : "w-full h-full rounded-md object-cover",
+                    alt : "Imagem do produto {props.item.name}",
                     } /* IMAGEM */
                 }
-            div { class : "flex flex-grow flex-col justify-between w-5/12",
+            div { class : "flex flex-grow flex-col justify-between w-6/12",
                     div { class : "mb-auto",
                             h3 { class : "text-lg font-semibold h-1/5" ,
-                                "TESTE H3" /* NOME */
+                                "{props.item.name}" /* NOME */
                                },
                                 p { /* DESCRIÇÃO */
-                                    class : "break-words text-sm h-4/5",
-                                            "TESTE DESCRICAOBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAsdfsdfsdfsdfs
-                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 
-                                          ",
+                                    class : "break-words text-sm h-4/5 mt-6",
+                                            "{props.item.description}",
 
                                   },
                         },
                         div { class : "flex justify-between mt-2",
-                    div { class : "flex",
-                           span { class : "text-lg font-semibold",
+                            div { class : "flex",
+                                span { class : "text-lg font-semibold",
                                         "R$0.00"
-                                } /* PREÇO */
-                        },
+                                    } /* PREÇO */
+                                },
 
-                    div { class : "flex",
-                         button { class : "rounded bg-gray-200 px-2 py-1 text-gray-700",
-                                      "+"
-                                }/*BUTTON ADICIONAR */
+                            div { class : "flex rounded bg-gray-200 px-2 py-1 text-gray-700",
+                            if (props.item.quantity)() > 0 {
+                                button { onclick: move |event| {props.item.quantity -=1;} ,
+                                class:"px-2 py-1",
+                                        "-"
+                                        }/*BUTTON - */
+
+                            div {class:"px-2 py-1 ",
+                                    "{props.item.quantity}"
+                                       /*QUANTIDADE */
+                                }
+                            button { onclick: move |event| {props.item.quantity +=1;} ,
+                                             class:"px-2 py-1 ",
+                                                "+"
+                                    }/*BUTTON + */
+                                }
+
+                        else {
+                            button { onclick: move |event| {props.item.quantity +=1;} ,
+                            class:"px-2 py-1 ",
+                               "Adicionar"
+                   }/*BUTTON ADICIONAR */
                         }
-                        div { class : "flex",
-                         button { class : "rounded bg-gray-200 px-2 py-1 text-gray-700",
-                         "{props.asd.quantity }"
-                                }/*BUTTON ADICIONAR */
-                        }
-
-                          button { onclick: move |event| {
-                            props.asd.quantity -=1;
-                             log::info!("Clicked! Event:")} ,
-                            class : "rounded bg-gray-200 px-2 py-1 text-gray-700",
-                            "click me!"
-
-                                }/*BUTTON ADICIONAR */
-
+                    }
                     }
                 }
             }
