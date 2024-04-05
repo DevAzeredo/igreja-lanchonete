@@ -1,9 +1,6 @@
 use dioxus::{core_macro::rsx, dioxus_core::Element};
 use dioxus::{prelude::*, web::launch};
-#[derive(PartialEq, Clone, Props)]
-pub struct Prop {
-    pub item: Item,
-}
+
 
 #[derive(PartialEq, Clone, Props)]
 pub struct Item {
@@ -13,52 +10,54 @@ pub struct Item {
     pub description: String,
 }
 
-pub fn Item(mut props: Prop) -> Element {
+
+pub fn ItemComponent(mut item: Item) -> Element {
     rsx!(
+
         div { class : "flex mb-4 max-w max-h border p-4 mt-2 mr-2 ml-2",
             div { class : "mr-4 w-5/12",
                 img { src : "https://www.estadao.com.br/resizer/dixyOItHmPSgiedCSBL1iIT5lGo=/arc-anglerfish-arc2-prod-estadao/public/GUOGMQ4FRJIUPAWMYLE4WNA3SY.jpg",
                     class : "w-full h-full rounded-md object-cover",
-                    alt : "Imagem do produto {props.item.name}",
+                    alt : "Imagem do produto {item.name}",
                     } /* IMAGEM */
                 }
             div { class : "flex flex-grow flex-col justify-between w-6/12",
                     div { class : "mb-auto",
                             h3 { class : "text-lg font-semibold h-1/5" ,
-                                "{props.item.name}" /* NOME */
+                                "{item.name}" /* NOME */
                                },
                                 p { /* DESCRIÇÃO */
                                     class : "break-words text-sm h-4/5 mt-6",
-                                            "{props.item.description}",
+                                            "{item.description}",
 
                                   },
                         },
                         div { class : "flex justify-between mt-2",
                             div { class : "flex",
                                 span { class : "text-lg font-semibold",
-                                        "R$0.00"
+                                        "R${item.Total()}"
                                     } /* PREÇO */
                                 },
 
                             div { class : "flex rounded bg-gray-200 px-2 py-1 text-gray-700",
-                            if (props.item.quantity)() > 0 {
-                                button { onclick: move |event| {props.item.quantity -=1;} ,
+                            if (item.quantity)() > 0 {
+                                button { onclick: move |event| {item.quantity -=1;} ,
                                 class:"px-2 py-1",
                                         "-"
                                         }/*BUTTON - */
 
                             div {class:"px-2 py-1 ",
-                                    "{props.item.quantity}"
+                                    "{item.quantity}"
                                        /*QUANTIDADE */
                                 }
-                            button { onclick: move |event| {props.item.quantity +=1;} ,
+                            button { onclick: move |event| {item.quantity +=1;} ,
                                              class:"px-2 py-1 ",
                                                 "+"
                                     }/*BUTTON + */
                                 }
 
                         else {
-                            button { onclick: move |event| {props.item.quantity +=1;} ,
+                            button { onclick: move |event| {item.quantity +=1;} ,
                             class:"px-2 py-1 ",
                                "Adicionar"
                    }/*BUTTON ADICIONAR */
