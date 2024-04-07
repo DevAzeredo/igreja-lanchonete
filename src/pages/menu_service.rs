@@ -38,5 +38,6 @@ impl Menu {
         };
 
         self.items = use_signal(|| vec![items, itemz]);
+        log::info!("FEZ O LOAD");
     }
 }

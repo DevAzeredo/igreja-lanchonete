@@ -2,3 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+
+    .btn-custom {
+        background-color: var(--bg-gray-200);
+        color: var(--text-gray-700);
+        /* Adicione mais estilos conforme necessário */
+    }
+}

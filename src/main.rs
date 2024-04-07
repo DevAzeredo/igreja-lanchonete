@@ -16,13 +16,8 @@ fn App() -> Element {
     let masd: Signal<Menu> = Signal::new(Menu::new());
 
     rsx! {
-        div{ class:"mb-8 flex min-h-screen flex-col items-center justify-center",
-        h1{ class:"mb-8 text-center text-4xl font-bold" ,
-                        "Menu"},
-        div{ class:"flex max-w-4xl items-center justify-center",
            MenuPage{
             menu:masd()
            }
-        }}
     }
 }

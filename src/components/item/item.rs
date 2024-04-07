@@ -32,14 +32,14 @@ pub fn ItemComponent(mut item: Item) -> Element {
 
                                   },
                         },
-                        div { class : "flex justify-between mt-2",
+                        div { class : "flex justify-between space-x-2 mt-2",
                             div { class : "flex",
                                 span { class : "text-lg font-semibold",
                                         "R${item.price}"
                                     } /* PREÇO */
                                 },
 
-                            div { class : "flex rounded bg-gray-200 px-2 py-1 text-gray-700",
+                            div { class : "flex rounded bg-button-200 px-2 py-1 button-text-700",
                             if (item.quantity)() > 0 {
                                 button { onclick: move |_| {item.quantity -=1;} ,
                                 class:"px-2 py-1",

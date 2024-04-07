@@ -1,0 +1,1 @@
+@import "./fonts/inter.css";@tailwind base;@tailwind components;@tailwind utilities;@layer base{.btn-custom{background-color:var(--bg-gray-200);color:var(--text-gray-700)}}
